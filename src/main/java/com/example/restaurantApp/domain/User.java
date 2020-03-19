@@ -3,17 +3,27 @@ package com.example.restaurantApp.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name="User")
 public class User {
 
     @Id
+    @Column(name = "userId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "firstName")
     private String firstName;
+
+    @Column(name = "lastName")
     private String lastName;
+
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "password")
     private String password;
+
+
 
     public int getId() {
         return id;

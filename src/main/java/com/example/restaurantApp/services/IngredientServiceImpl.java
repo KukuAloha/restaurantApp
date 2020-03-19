@@ -1,6 +1,5 @@
 package com.example.restaurantApp.services;
 
-
 import com.example.restaurantApp.domain.Ingredient;
 import com.example.restaurantApp.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;

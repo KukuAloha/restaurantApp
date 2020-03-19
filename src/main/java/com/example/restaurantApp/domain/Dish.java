@@ -1,19 +1,27 @@
 package com.example.restaurantApp.domain;
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="Dish")
 public class Dish {
+
     @Id
+    @Column(name="dishId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "dishName")
+    private String name;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name="price")
     private double price;
+
+
+
 
     public int getId() {
         return id;
@@ -37,5 +45,13 @@ public class Dish {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

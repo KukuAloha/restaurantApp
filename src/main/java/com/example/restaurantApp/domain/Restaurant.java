@@ -1,28 +1,31 @@
 package com.example.restaurantApp.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="Restaurant")
 public class Restaurant {
     @Id
+    @Column(name = "restaurantId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name= "restaurantName" )
     private String name;
+
+    @Column(name="address")
     private String address;
+
+    @Column(name = "description")
     private String description;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getName() {
         return name;

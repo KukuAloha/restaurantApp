@@ -1,6 +1,5 @@
 package com.example.restaurantApp.controllers;
 
-
 import com.example.restaurantApp.domain.Restaurant;
 import com.example.restaurantApp.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
