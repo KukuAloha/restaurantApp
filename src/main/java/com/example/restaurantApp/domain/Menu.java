@@ -1,24 +1,32 @@
 package com.example.restaurantApp.domain;
 
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="dish")
-public class Dish {
+@Table(name="menu")
+public class Menu {
 
     @Id
-    @Column(name="dishId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "dishName")
-    private String name;
-
-    @Column(name = "description")
+    @Column(name="description")
     private String description;
 
-    @Column(name="price")
-    private double price;
+
+
+    @OneToOne(optional = false, mappedBy = "menu")
+    public Restaurant restaurant;
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
 
 
     public int getId() {
@@ -35,21 +43,5 @@ public class Dish {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

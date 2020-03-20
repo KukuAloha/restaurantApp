@@ -4,7 +4,7 @@ package com.example.restaurantApp.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Restaurant")
+@Table(name="restaurant")
 public class Restaurant {
     @Id
     @Column(name = "restaurantId")
@@ -20,6 +20,19 @@ public class Restaurant {
     @Column(name = "description")
     private String description;
 
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
 
 
 

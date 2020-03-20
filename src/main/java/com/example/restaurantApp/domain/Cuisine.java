@@ -4,21 +4,14 @@ package com.example.restaurantApp.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name="ingredient")
-public class Ingredient {
+public class Cuisine {
+
     @Id
-    @Column(name="ingredientId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="ingredientName")
+    @Column(name = "cuisineName")
     private String name;
-
-    @Column(name="weight")
-    private double weight;
-
-
-
 
     public int getId() {
         return id;
@@ -36,11 +29,4 @@ public class Ingredient {
         this.name = name;
     }
 
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
 }
