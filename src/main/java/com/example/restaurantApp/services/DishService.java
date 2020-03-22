@@ -7,4 +7,5 @@ import java.util.List;
 public interface DishService {
     List<Dish> getAllDishes();
     int addDish(Dish dish);
+    int deleteDish(int id);
 }

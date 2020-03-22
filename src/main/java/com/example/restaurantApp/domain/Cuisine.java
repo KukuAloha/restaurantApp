@@ -2,6 +2,7 @@ package com.example.restaurantApp.domain;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Cuisine {
@@ -12,6 +13,22 @@ public class Cuisine {
 
     @Column(name = "cuisineName")
     private String name;
+
+
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinTable(name = "cuisine_restaurant",
+                joinColumns = @JoinColumn(name = "cuisine_id"),
+                inverseJoinColumns = @JoinColumn(name = "restaurant_id"))
+    private Set<Restaurant> restaurants;
+
+    public Set<Restaurant> getRestaurants() { return restaurants; }
+
+    public void setRestaurants(Set<Restaurant> restaurants) { this.restaurants = restaurants; }
+
+
+
+
 
     public int getId() {
         return id;

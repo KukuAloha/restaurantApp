@@ -23,4 +23,7 @@ public class CuisineController {
     public int addCuisine(@RequestBody Cuisine cuisine){
         return cuisineService.addCuisine(cuisine);
     }
+
+    @DeleteMapping
+    public int deleteCuisine(@RequestParam int id){ return cuisineService.deleteCuisine(id); }
 }

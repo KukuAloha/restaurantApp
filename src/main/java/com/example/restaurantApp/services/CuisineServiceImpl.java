@@ -21,4 +21,11 @@ public class CuisineServiceImpl implements CuisineService {
     public int addCuisine(Cuisine cuisine) {
         return cuisineRepository.save(cuisine).getId();
     }
+
+    @Override
+    public int deleteCuisine(int id) {
+        cuisineRepository.deleteById(id);
+        return id;
+    }
+
 }

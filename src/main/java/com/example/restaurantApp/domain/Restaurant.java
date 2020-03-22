@@ -2,12 +2,12 @@ package com.example.restaurantApp.domain;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="restaurant")
 public class Restaurant {
     @Id
-    @Column(name = "restaurantId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -33,6 +33,15 @@ public class Restaurant {
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "restaurants")
+    private Set<Cuisine> cuisines;
+
+    public Set<Cuisine> getCuisines() { return cuisines; }
+
+    public void setCuisines(Set<Cuisine> cuisines) { this.cuisines = cuisines; }
+
+
 
 
 

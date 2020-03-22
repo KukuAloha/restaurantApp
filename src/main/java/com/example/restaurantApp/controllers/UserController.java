@@ -20,8 +20,11 @@ public class UserController{
     }
 
     @PutMapping
-    public int AddUser(@RequestBody User user) {
+    public int addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
+
+    @DeleteMapping
+    public int deleteUser(@RequestParam int id){ return userService.deleteUser(id); }
 
 }

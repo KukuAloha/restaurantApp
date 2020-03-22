@@ -16,8 +16,9 @@ public class Menu {
 
 
 
+
     @OneToOne(optional = false, mappedBy = "menu")
-    public Restaurant restaurant;
+    private Restaurant restaurant; //public Restaurant restaurant
 
     public Restaurant getRestaurant() {
         return restaurant;
@@ -26,6 +27,16 @@ public class Menu {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
+
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "dish_id")
+    private Dish dish;
+
+    public Dish getDish() { return dish; }
+
+    public void setDish(Dish dish) { this.dish = dish; }
+
+
 
 
 

@@ -20,7 +20,12 @@ public class RestaurantController {
     }
 
     @PutMapping
-    public int AddUser(@RequestBody Restaurant restaurant){
+    public int addRestaurant(@RequestBody Restaurant restaurant){
         return  restaurantService.addRestaurant(restaurant);
+    }
+
+    @DeleteMapping
+    public int deleteRestaurant(@RequestParam int id){
+        return restaurantService.deleteRestaurant(id);
     }
 }

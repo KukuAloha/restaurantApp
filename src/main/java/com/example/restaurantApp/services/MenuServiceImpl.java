@@ -22,4 +22,12 @@ public class MenuServiceImpl implements MenuService {
     public int addMenu(Menu menu) {
         return menuRepository.save(menu).getId();
     }
+
+    @Override
+    public int deleteMenu(int id) {
+        menuRepository.deleteById(id);
+        return id;
+    }
+
+
 }

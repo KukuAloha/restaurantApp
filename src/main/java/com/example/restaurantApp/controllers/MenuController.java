@@ -24,4 +24,7 @@ public class MenuController {
     public int addMenu(@RequestBody Menu menu){
         return menuService.addMenu(menu);
     }
+
+    @DeleteMapping
+    public int deleteMenu(@RequestParam int id){ return menuService.deleteMenu(id); }
 }

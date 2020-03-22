@@ -8,4 +8,5 @@ import java.util.List;
 public interface CuisineService {
     List<Cuisine> getAllCuisines();
     int addCuisine(Cuisine cuisine);
+    int deleteCuisine(int id);
 }

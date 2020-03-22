@@ -22,4 +22,7 @@ public class IngredientController {
     public int addIngredient(@RequestBody Ingredient ingredient){
         return ingredientService.addIngredient(ingredient);
     }
+
+    @DeleteMapping
+    public int deleteIngredient(@RequestParam int id){ return ingredientService.deleteIngredient(id);}
 }

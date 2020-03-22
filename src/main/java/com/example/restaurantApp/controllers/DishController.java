@@ -22,4 +22,9 @@ public class DishController {
     public int addDish(@RequestBody Dish dish){
         return dishService.addDish(dish);
     }
+
+    @DeleteMapping
+    public int deleteDish(@RequestParam int id){
+        return dishService.deleteDish(id);
+    }
 }

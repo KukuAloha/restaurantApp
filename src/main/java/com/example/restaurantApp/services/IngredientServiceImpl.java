@@ -21,4 +21,10 @@ public class IngredientServiceImpl implements IngredientService {
     public int addIngredient(Ingredient ingredient) {
         return ingredientRepository.save(ingredient).getId();
     }
+
+    @Override
+    public int deleteIngredient(int id) {
+        ingredientRepository.deleteById(id);
+        return id;
+    }
 }
