@@ -1,6 +1,7 @@
 package com.example.restaurantApp.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="user")
@@ -21,6 +22,24 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+
+
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+    private Set<CommentDish> commentDishes;
+
+    public Set<CommentDish> getCommentDishes() { return commentDishes; }
+
+    public void setCommentDishes(Set<CommentDish> commentDishes) { this.commentDishes = commentDishes; }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+    private Set<CommentRestaurant> commentRestaurants;
+
+    public Set<CommentRestaurant> getCommentRestaurants() { return commentRestaurants; }
+
+    public void setCommentRestaurants(Set<CommentRestaurant> commentRestaurants) { this.commentRestaurants = commentRestaurants; }
+
 
 
 

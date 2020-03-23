@@ -2,6 +2,7 @@ package com.example.restaurantApp.domain;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="menu")
@@ -16,9 +17,20 @@ public class Menu {
 
 
 
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "menu")
+    private Set<Dish> dishes;
 
-    @OneToOne(optional = false, mappedBy = "menu")
-    private Restaurant restaurant; //public Restaurant restaurant
+    public Set<Dish> getDishes() {
+        return dishes;
+    }
+
+    public void setDishes(Set<Dish> dishes) {
+        this.dishes = dishes;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
     public Restaurant getRestaurant() {
         return restaurant;
@@ -27,14 +39,6 @@ public class Menu {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
-
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "dish_id")
-    private Dish dish;
-
-    public Dish getDish() { return dish; }
-
-    public void setDish(Dish dish) { this.dish = dish; }
 
 
 

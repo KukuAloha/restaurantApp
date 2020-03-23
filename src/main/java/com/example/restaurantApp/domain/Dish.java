@@ -23,17 +23,20 @@ public class Dish {
 
 
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "dish")
-    private Set<Menu> menus;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "dish")
+    private Set<CommentDish> commentDishes;
 
-    public Set<Menu> getMenus() {
-        return menus;
-    }
+    public Set<CommentDish> getCommentDishes() { return commentDishes; }
 
-    public void setMenus(Set<Menu> menus) {
-        this.menus = menus;
-    }
+    public void setCommentDishes(Set<CommentDish> commentDishes) { this.commentDishes = commentDishes; }
 
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
+
+    public Menu getMenu() { return menu; }
+
+    public void setMenu(Menu menu) { this.menu = menu; }
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "dish_ingredient",
@@ -44,7 +47,6 @@ public class Dish {
     public Set<Ingredient> getIngredients() { return ingredients; }
 
     public void setIngredients(Set<Ingredient> ingredients) { this.ingredients = ingredients; }
-
 
 
 

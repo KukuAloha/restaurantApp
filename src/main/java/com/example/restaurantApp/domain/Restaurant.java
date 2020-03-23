@@ -22,8 +22,14 @@ public class Restaurant {
 
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "menu_id")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "restaurant")
+    private Set<CommentRestaurant> commentRestaurants;
+
+    public Set<CommentRestaurant> getCommentRestaurants() { return commentRestaurants; }
+
+    public void setCommentRestaurants(Set<CommentRestaurant> commentRestaurants) { this.commentRestaurants = commentRestaurants; }
+
+    @OneToOne(mappedBy = "restaurant")
     private Menu menu;
 
     public Menu getMenu() {
