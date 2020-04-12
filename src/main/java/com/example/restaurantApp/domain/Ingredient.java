@@ -20,6 +20,7 @@ public class Ingredient {
 
 
 
+
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "ingredients")
     private Set<Dish> dishes;
 

@@ -17,16 +17,13 @@ public class Menu {
 
 
 
+
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "menu")
     private Set<Dish> dishes;
 
-    public Set<Dish> getDishes() {
-        return dishes;
-    }
+    public Set<Dish> getDishes() { return dishes; }
 
-    public void setDishes(Set<Dish> dishes) {
-        this.dishes = dishes;
-    }
+    public void setDishes(Set<Dish> dishes) { this.dishes = dishes; }
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")

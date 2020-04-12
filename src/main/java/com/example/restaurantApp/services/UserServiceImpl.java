@@ -4,7 +4,6 @@ import com.example.restaurantApp.domain.User;
 import com.example.restaurantApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
