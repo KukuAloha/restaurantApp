@@ -2,6 +2,8 @@ package com.example.restaurantApp.domain;
 
 
 import javax.persistence.*;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -20,6 +22,8 @@ public class Restaurant {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "url")
+    private String url;
 
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "restaurant")
@@ -48,8 +52,13 @@ public class Restaurant {
     public void setCuisines(Set<Cuisine> cuisines) { this.cuisines = cuisines; }
 
 
+    public Optional<String> getUrl() {
+        return Optional.ofNullable(url);
+    }
 
-
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public int getId() { return id; }
 
@@ -79,4 +88,21 @@ public class Restaurant {
         this.description = description;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Restaurant that = (Restaurant) o;
+        return id == that.id &&
+                Objects.equals(name,that.name) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(description,that.description) &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(menu, that.menu);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, address, description, url, menu);
+    }
 }
