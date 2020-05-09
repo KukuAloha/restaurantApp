@@ -1,6 +1,8 @@
 package com.example.restaurantApp.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,13 +16,12 @@ public class Ingredient {
     @Column(name="ingredientName")
     private String name;
 
+    @Column(name = "url")
+    private String url;
+
     @Column(name="weight")
     private double weight;
-
-
-
-
-
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "ingredients")
     private Set<Dish> dishes;
 
@@ -28,12 +29,16 @@ public class Ingredient {
 
     public void setDishes(Set<Dish> dishes) { this.dishes = dishes; }
 
-
-
-
-
     public int getId() {
         return id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setId(int id) {

@@ -18,4 +18,11 @@ public interface RestaurantRepository extends CrudRepository<Restaurant,Integer>
     void updateRestaurantLinkById(@Param("restaurantId") int restaurantId,
                                   @Param("link") String link);
 
+    @Transactional
+    @Query("select r from Restaurant r where r.name = :name")
+    Restaurant getRestaurantByName(@Param("name") String name);
+
+    @Transactional
+    @Query("select r from Restaurant r where r.id = :id")
+    Restaurant getRestaurantById(@Param("id") int id);
 }

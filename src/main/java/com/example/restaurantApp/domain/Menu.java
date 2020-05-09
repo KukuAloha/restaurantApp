@@ -1,6 +1,8 @@
 package com.example.restaurantApp.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -15,17 +17,26 @@ public class Menu {
     @Column(name="description")
     private String description;
 
-
-
-
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "menu")
     private Set<Dish> dishes;
+
+    @Column(name = "url")
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Set<Dish> getDishes() { return dishes; }
 
     public void setDishes(Set<Dish> dishes) { this.dishes = dishes; }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
@@ -36,10 +47,6 @@ public class Menu {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
-
-
-
-
 
     public int getId() {
         return id;

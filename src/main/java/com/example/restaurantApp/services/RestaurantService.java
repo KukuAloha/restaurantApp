@@ -12,4 +12,5 @@ public interface RestaurantService {
 
     void uploadRestaurantImage(int restaurantId, MultipartFile file);
 
+    Restaurant getRestaurantByName(String name);
 }

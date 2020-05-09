@@ -1,6 +1,8 @@
 package com.example.restaurantApp.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,15 +27,14 @@ public class Restaurant {
     @Column(name = "url")
     private String url;
 
-
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "restaurant")
     private Set<CommentRestaurant> commentRestaurants;
 
     public Set<CommentRestaurant> getCommentRestaurants() { return commentRestaurants; }
 
     public void setCommentRestaurants(Set<CommentRestaurant> commentRestaurants) { this.commentRestaurants = commentRestaurants; }
-
-    @OneToOne(mappedBy = "restaurant")
+    @JsonBackReference
+    @OneToOne(mappedBy = "restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Menu menu;
 
     public Menu getMenu() {

@@ -1,13 +1,14 @@
-package com.example.restaurantApp.services;
+package com.example.restaurantApp.services.impl;
 
 import com.example.restaurantApp.domain.User;
 import com.example.restaurantApp.repository.UserRepository;
+import com.example.restaurantApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 

@@ -38,6 +38,11 @@ public class RestaurantController {
 
     }
 
+    @GetMapping("/getByName")
+    public Restaurant getRestaurantByName(@RequestParam("name") String name) {
+        return restaurantService.getRestaurantByName(name);
+    }
+
     @DeleteMapping
     public int deleteRestaurant(@RequestParam int id){
         return restaurantService.deleteRestaurant(id);

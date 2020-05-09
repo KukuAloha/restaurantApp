@@ -1,70 +1,74 @@
-package com.example.restaurantApp.services;
-
+package com.example.restaurantApp.services.impl;
 
 import com.example.restaurantApp.bucket.BucketName;
+import com.example.restaurantApp.domain.Dish;
+import com.example.restaurantApp.domain.Menu;
 import com.example.restaurantApp.domain.Restaurant;
 import com.example.restaurantApp.filestore.FileStore;
-import com.example.restaurantApp.profile.UserProfile;
-import com.example.restaurantApp.repository.RestaurantRepository;
+import com.example.restaurantApp.repository.DishRepository;
+import com.example.restaurantApp.repository.MenuRepository;
+import com.example.restaurantApp.services.DishService;
 import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Query;
 import java.io.IOException;
 import java.util.*;
 
 @Service
-public class RestaurantServiceImpl implements RestaurantService {
+public class DishServiceImpl implements DishService {
     @Autowired
-    private RestaurantRepository restaurantRepository;
+    private DishRepository dishRepository;
+
+    @Autowired
+    private MenuRepository menuRepository;
 
     @Autowired
     private FileStore fileStore;
 
     @Override
-    public List<Restaurant> getAllRestaurants() {
-        return (List<Restaurant>) restaurantRepository.findAll();
+    public List<Dish> getAllDishesByMenuId(int id) {
+        return dishRepository.findDishesByMenuId(id);
     }
 
     @Override
-    public int addRestaurant(Restaurant restaurant) {
-        return restaurantRepository.save(restaurant).getId();
+    public void addDish(Dish dish, int id) {
+        dish.setMenu(menuRepository.findMenuById(id));
+        dishRepository.save(dish);
+    }
+
+    public List<Dish> getAllDishes() {
+        return (List<Dish>) dishRepository.findAll();
     }
 
     @Override
-    public int deleteRestaurant(int id) {
-        restaurantRepository.deleteById(id);
-        return id;
-    }
-
-    @Override
-    public void uploadRestaurantImage(int restaurantId, MultipartFile file) {
+    public void uploadDishImage(int dishId, MultipartFile file) {
         isFileEmpty(file);
 
         isImage(file);
 
-        Restaurant restaurant = getRestaurantOrThrow(restaurantId);
+        Dish dish = getDishOrThrow(dishId);
 
         Map<String, String> metadata = extractMetadata(file);
 
-        String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "Restaurants",restaurant.getId());
+        String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "Dishes", dish.getId());
         String filename = String.format("%s", file.getOriginalFilename());
 
         try {
             fileStore.save(path, filename, Optional.of(metadata), file.getInputStream());
-            String link = "https://kray-bucket.s3.eu-central-1.amazonaws.com/Restaurants/" + restaurantId + "/" + filename;
-            restaurantRepository.updateRestaurantLinkById(restaurantId, link); //setUserProfileImageLink(filename);
+            String link = "https://kray-bucket.s3.eu-central-1.amazonaws.com/Dishes/" + dishId + "/" + filename;
+            dishRepository.updateDishLinkById(dishId, link);
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
     }
 
-    public void updateLink(int restaurantId, String link) {
-        restaurantRepository.updateRestaurantLinkById(restaurantId, link);
+    @Override
+    public int deleteDish(int id) {
+        dishRepository.deleteById(id);
+        return id;
     }
-
 
     private Map<String, String> extractMetadata(MultipartFile file) {
         Map<String, String> metadata = new HashMap<>();
@@ -73,12 +77,12 @@ public class RestaurantServiceImpl implements RestaurantService {
         return metadata;
     }
 
-    private Restaurant getRestaurantOrThrow(int restaurantId) {
-        return getAllRestaurants()
+    private Dish getDishOrThrow(int dishId) {
+        return getAllDishes()
                 .stream()
-                .filter(restaurant -> restaurant.getId() == restaurantId )
+                .filter(dish -> dish.getId() == dishId )
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException(String.format("Restaurant %s not found", restaurantId)));
+                .orElseThrow(() -> new IllegalStateException(String.format("Dish %s not found", dishId)));
     }
 
     private void isImage(MultipartFile file) {
@@ -94,5 +98,4 @@ public class RestaurantServiceImpl implements RestaurantService {
             throw new IllegalStateException("Cannot upload empty file [ " + file.getSize() + "]");
         }
     }
-
 }
