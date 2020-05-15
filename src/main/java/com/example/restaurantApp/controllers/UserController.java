@@ -19,7 +19,7 @@ public class UserController{
         return userService.getAllUsers();
     }
 
-    @PutMapping
+    @PostMapping
     public int addUser(@RequestBody User user) {
         return userService.addUser(user);
     }

@@ -1,6 +1,8 @@
 package com.example.restaurantApp.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -18,6 +20,7 @@ public class CommentDish {
 
 
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "dish_id")
     private Dish dish;
@@ -26,6 +29,7 @@ public class CommentDish {
 
     public void setDish(Dish dish) { this.dish = dish; }
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
