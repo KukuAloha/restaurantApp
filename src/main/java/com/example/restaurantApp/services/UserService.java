@@ -9,4 +9,12 @@ public interface UserService {
     List<User> getAllUsers();
     int addUser(User user);
     int deleteUser(int id);
+
+    User register(User user);
+
+    User findByUserName(String username);
+
+    User findById(int id);
+
+
 }

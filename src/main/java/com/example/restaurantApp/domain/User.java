@@ -1,10 +1,15 @@
 package com.example.restaurantApp.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name="user")
+@Data
 public class User {
 
     @Id
@@ -20,11 +25,18 @@ public class User {
     @Column(name = "login")
     private String login;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "password")
     private String password;
 
-
-
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id") },
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private List<Role> roles;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private Set<CommentDish> commentDishes;
@@ -39,17 +51,6 @@ public class User {
     public Set<CommentRestaurant> getCommentRestaurants() { return commentRestaurants; }
 
     public void setCommentRestaurants(Set<CommentRestaurant> commentRestaurants) { this.commentRestaurants = commentRestaurants; }
-
-
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;

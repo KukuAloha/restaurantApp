@@ -19,9 +19,14 @@ public class UserController{
         return userService.getAllUsers();
     }
 
-    @PutMapping
+    @PostMapping
     public int addUser(@RequestBody User user) {
         return userService.addUser(user);
+    }
+
+    @PostMapping("/register")
+    public User register(@RequestBody User user) {
+        return userService.register(user);
     }
 
     @DeleteMapping
