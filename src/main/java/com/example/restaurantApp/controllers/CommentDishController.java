@@ -20,8 +20,10 @@ public class CommentDishController {
     }
 
     @PostMapping
-    public void addCommentDish(@RequestBody CommentDish commentDish){
-        commentDishService.addCommentDish(commentDish);
+    public void addCommentDish(@RequestBody CommentDish commentDish,
+                               @RequestParam("idDish") int idDish,
+                               @RequestParam("idUser") int idUser){
+        commentDishService.addCommentDish(commentDish, idUser, idDish);
     }
 
     @DeleteMapping

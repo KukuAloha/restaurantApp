@@ -26,14 +26,17 @@ public class CommentRestaurantServiceImpl implements CommentRestaurantService {
     }
 
     @Override
-    public void addCommentRestaurant(CommentRestaurant commentRestaurant) {
-        commentRestaurantRepository.save(commentRestaurant).getId();
+    public void addCommentRestaurant(CommentRestaurant commentRestaurant, int idUser, int idRestaurant) {
+        commentRestaurant.setUser(userRepository.findById(idUser).get());
+        commentRestaurant.setRestaurant(restaurantRepository.findById(idRestaurant).get());
+        commentRestaurantRepository.save(commentRestaurant);
     }
 
     @Override
     public void deleteCommentRestaurant(int id) {
         commentRestaurantRepository.deleteById(id);
     }
+
 }
 
 

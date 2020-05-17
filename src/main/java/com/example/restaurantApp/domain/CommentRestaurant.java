@@ -16,18 +16,16 @@ public class CommentRestaurant {
     @Column(name = "commentRest")
     private String comment;
 
-    //private STARS????
+    @Column(name = "stars")
+    private int stars;
 
-
-
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+   // @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+   // @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -35,10 +33,13 @@ public class CommentRestaurant {
 
     public void setUser(User user) { this.user = user; }
 
+    public int getStars() {
+        return stars;
+    }
 
-
-
-
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
 
     public int getId() {
         return id;
@@ -54,5 +55,13 @@ public class CommentRestaurant {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

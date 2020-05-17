@@ -26,8 +26,10 @@ public class CommentDishServiceImpl implements CommentDishService {
     }
 
     @Override
-    public void addCommentDish(CommentDish commentDish) {
-        commentDishRepository.save(commentDish).getId();
+    public void addCommentDish(CommentDish commentDish, int idUser, int idDish) {
+        commentDish.setUser(userRepository.findById(idUser).get());
+        commentDish.setDish(dishRepository.findById(idDish).get());
+        commentDishRepository.save(commentDish);
     }
 
     @Override

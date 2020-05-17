@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CommentRestaurantService {
     List<CommentRestaurant> getAllCommentRestaurant();
-    void addCommentRestaurant(CommentRestaurant commentRestaurant);
+    void addCommentRestaurant(CommentRestaurant commentRestaurant, int idUser, int idRestaurant);
     void deleteCommentRestaurant(int id);
 
 }

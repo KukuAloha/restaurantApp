@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CommentDishService {
     List<CommentDish> getAllCommentDish();
-    void addCommentDish(CommentDish commentDish);
+    void addCommentDish(CommentDish commentDish, int idUser, int idDish);
     void deleteCommentDish(int id);
 
 

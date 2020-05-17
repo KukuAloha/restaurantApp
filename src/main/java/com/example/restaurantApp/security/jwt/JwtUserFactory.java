@@ -1,13 +1,13 @@
 package com.example.restaurantApp.security.jwt;
 
-import com.example.restaurantApp.domain.Role;
-import com.example.restaurantApp.domain.User;
+        import com.example.restaurantApp.domain.Role;
+        import com.example.restaurantApp.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.stream.Collectors;
 
 public final class JwtUserFactory {
 

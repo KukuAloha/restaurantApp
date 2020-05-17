@@ -27,9 +27,6 @@ public class Cuisine {
     public void setRestaurants(Set<Restaurant> restaurants) { this.restaurants = restaurants; }
 
 
-
-
-
     public int getId() {
         return id;
     }

@@ -16,10 +16,6 @@ public class CommentDish {
     @Column(name = "commentDish")
     private String comment;
 
-    //STARS
-
-
-
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "dish_id")
@@ -37,8 +33,6 @@ public class CommentDish {
     public User getUser() { return user; }
 
     public void setUser(User user) { this.user = user; }
-
-
 
 
     public int getId() {

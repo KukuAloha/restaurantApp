@@ -3,6 +3,8 @@ package com.example.restaurantApp.controllers;
 import com.example.restaurantApp.domain.CommentRestaurant;
 import com.example.restaurantApp.services.CommentRestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,10 @@ public class CommentRestaurantController {
     }
 
     @PostMapping
-    public void addCommentRestaurant(@RequestBody CommentRestaurant commentRestaurant){
-        commentRestaurantService.addCommentRestaurant(commentRestaurant);
+    public void addCommentRestaurant(@RequestBody CommentRestaurant commentRestaurant,
+                                     @Param("idRestaurant") int idRestaurant,
+                                     @Param("idUser") int idUser){
+        commentRestaurantService.addCommentRestaurant(commentRestaurant, idUser, idRestaurant);
     }
 
     @DeleteMapping
