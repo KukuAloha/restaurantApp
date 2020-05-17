@@ -1,5 +1,6 @@
 package com.example.restaurantApp.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +18,14 @@ public class Role {
     @Column(name = "name")
     private String name;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<User> users;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id: " + getId() + ", " +
+                "name: " + name + "}";
+    }
 }

@@ -53,6 +53,7 @@ public class AuthenticationController {
 
             response.put("username", username);
             response.put("token", token);
+            response.put("role", user.getRoles());
 
             return ResponseEntity.ok(response);
 

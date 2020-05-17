@@ -18,6 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String MODERATOR_ENDPOINT = "/admin/**";
     private static final String LOGIN_ENDPOINT = "/auth/login";
     private static final String REGISTRATION_ENDPOINT = "/users/register";
+    private static final String TEST = "/restaurant";
 
     @Autowired
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
@@ -36,13 +37,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
                 .and()
-                .authorizeRequests()
-                .antMatchers(LOGIN_ENDPOINT).permitAll()
-                .antMatchers(REGISTRATION_ENDPOINT).permitAll()
-                .antMatchers(MODERATOR_ENDPOINT).hasRole("MODERATOR")
-                .anyRequest().authenticated()
+                    .authorizeRequests()
+                    .antMatchers(TEST).permitAll()
+                    .antMatchers(LOGIN_ENDPOINT).permitAll()
+                    .antMatchers(REGISTRATION_ENDPOINT).permitAll()
+                    .antMatchers(MODERATOR_ENDPOINT).hasRole("MODERATOR")
+                    .anyRequest().authenticated()
                 .and()
-                .apply(new JwtConfigurer(jwtTokenProvider));
+                    .apply(new JwtConfigurer(jwtTokenProvider));
     }
 }
