@@ -27,12 +27,19 @@ public class Restaurant {
     @Column(name = "url")
     private String url;
 
+    @Column(name = "stars")
+    private int stars;
+
+    @Column(name = "avgCheck")
+    private int avgCheck;
+
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "restaurant")
     private Set<CommentRestaurant> commentRestaurants;
 
     public Set<CommentRestaurant> getCommentRestaurants() { return commentRestaurants; }
 
     public void setCommentRestaurants(Set<CommentRestaurant> commentRestaurants) { this.commentRestaurants = commentRestaurants; }
+
     @JsonBackReference
     @OneToOne(mappedBy = "restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Menu menu;
@@ -88,6 +95,14 @@ public class Restaurant {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int getStars() { return stars; }
+
+    public void setStars(int stars) { this.stars = stars; }
+
+    public int getAvgCheck() { return avgCheck; }
+
+    public void setAvgCheck(int avgCheck) { this.avgCheck = avgCheck; }
 
     @Override
     public boolean equals(Object o) {

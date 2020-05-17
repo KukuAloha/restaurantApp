@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/cuisine")
 public class CuisineController {
+
     @Autowired
     private CuisineService cuisineService;
 
@@ -19,7 +20,7 @@ public class CuisineController {
         return cuisineService.getAllCuisines();
     }
 
-    @PutMapping
+    @PostMapping
     public int addCuisine(@RequestBody Cuisine cuisine){
         return cuisineService.addCuisine(cuisine);
     }

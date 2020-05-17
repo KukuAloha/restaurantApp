@@ -32,6 +32,7 @@ public class Dish {
     public Set<CommentDish> getCommentDishes() { return commentDishes; }
 
     public void setCommentDishes(Set<CommentDish> commentDishes) { this.commentDishes = commentDishes; }
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "menu_id")

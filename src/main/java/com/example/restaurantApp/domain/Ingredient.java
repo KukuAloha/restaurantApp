@@ -21,6 +21,7 @@ public class Ingredient {
 
     @Column(name="weight")
     private double weight;
+
     @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "ingredients")
     private Set<Dish> dishes;
