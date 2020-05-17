@@ -2,12 +2,13 @@ package com.example.restaurantApp.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-
+@Data
 @Entity
 @Table(name="restaurant")
 public class Restaurant {
@@ -36,73 +37,12 @@ public class Restaurant {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "restaurant")
     private Set<CommentRestaurant> commentRestaurants;
 
-    public Set<CommentRestaurant> getCommentRestaurants() { return commentRestaurants; }
-
-    public void setCommentRestaurants(Set<CommentRestaurant> commentRestaurants) { this.commentRestaurants = commentRestaurants; }
-
     @JsonBackReference
     @OneToOne(mappedBy = "restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Menu menu;
 
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "restaurants")
     private Set<Cuisine> cuisines;
-
-    public Set<Cuisine> getCuisines() { return cuisines; }
-
-    public void setCuisines(Set<Cuisine> cuisines) { this.cuisines = cuisines; }
-
-
-    public Optional<String> getUrl() {
-        return Optional.ofNullable(url);
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public int getId() { return id; }
-
-    public void setId(int id) { this.id = id; }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getStars() { return stars; }
-
-    public void setStars(int stars) { this.stars = stars; }
-
-    public int getAvgCheck() { return avgCheck; }
-
-    public void setAvgCheck(int avgCheck) { this.avgCheck = avgCheck; }
 
     @Override
     public boolean equals(Object o) {

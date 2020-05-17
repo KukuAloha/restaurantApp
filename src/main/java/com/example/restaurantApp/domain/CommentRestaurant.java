@@ -1,11 +1,12 @@
 package com.example.restaurantApp.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Set;
 
-
+@Data
 @Entity
 @Table(name = "commentRestaurant")
 public class CommentRestaurant {
@@ -29,39 +30,4 @@ public class CommentRestaurant {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public User getUser() { return user; }
-
-    public void setUser(User user) { this.user = user; }
-
-    public int getStars() {
-        return stars;
-    }
-
-    public void setStars(int stars) {
-        this.stars = stars;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
 }

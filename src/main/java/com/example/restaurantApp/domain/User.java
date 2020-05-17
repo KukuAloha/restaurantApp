@@ -41,46 +41,7 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private Set<CommentDish> commentDishes;
 
-    public Set<CommentDish> getCommentDishes() { return commentDishes; }
-
-    public void setCommentDishes(Set<CommentDish> commentDishes) { this.commentDishes = commentDishes; }
-
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private Set<CommentRestaurant> commentRestaurants;
 
-    public Set<CommentRestaurant> getCommentRestaurants() { return commentRestaurants; }
-
-    public void setCommentRestaurants(Set<CommentRestaurant> commentRestaurants) { this.commentRestaurants = commentRestaurants; }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
