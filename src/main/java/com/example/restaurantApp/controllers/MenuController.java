@@ -2,6 +2,7 @@ package com.example.restaurantApp.controllers;
 
 
 import com.example.restaurantApp.domain.Menu;
+import com.example.restaurantApp.dto.MenuDto;
 import com.example.restaurantApp.services.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -23,7 +24,7 @@ public class MenuController {
         return menuService.getMenuByRestaurantId(id);
     }
     @PostMapping
-    public void addMenu(@RequestBody Menu menu,
+    public void addMenu(@RequestBody MenuDto menu,
                         @Param("id") int id){
         menuService.addMenu(menu, id);
     }

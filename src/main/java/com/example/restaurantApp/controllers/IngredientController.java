@@ -1,6 +1,7 @@
 package com.example.restaurantApp.controllers;
 
 import com.example.restaurantApp.domain.Ingredient;
+import com.example.restaurantApp.dto.IngredientDto;
 import com.example.restaurantApp.services.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -29,7 +30,7 @@ public class IngredientController {
     }
 
     @PostMapping
-    public void addNewIngredient(@RequestBody Ingredient ingredient){
+    public void addNewIngredient(@RequestBody IngredientDto ingredient){
         ingredientService.addIngredient(ingredient);
     }
 

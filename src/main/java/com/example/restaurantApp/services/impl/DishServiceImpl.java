@@ -4,6 +4,7 @@ import com.example.restaurantApp.bucket.BucketName;
 import com.example.restaurantApp.domain.Dish;
 import com.example.restaurantApp.domain.Menu;
 import com.example.restaurantApp.domain.Restaurant;
+import com.example.restaurantApp.dto.DishDto;
 import com.example.restaurantApp.filestore.FileStore;
 import com.example.restaurantApp.repository.DishRepository;
 import com.example.restaurantApp.repository.MenuRepository;
@@ -33,7 +34,13 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public void addDish(Dish dish, int id) {
+    public void addDish(DishDto dishDto, int id) {
+        Dish dish = new Dish();
+
+        dish.setDescription(dishDto.getDescription());
+        dish.setName(dishDto.getName());
+        dish.setPrice(dishDto.getPrice());
+
         dish.setMenu(menuRepository.findMenuById(id));
         dishRepository.save(dish);
     }

@@ -22,12 +22,12 @@ public class CommentRestaurant {
     private int stars;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 

@@ -1,6 +1,7 @@
 package com.example.restaurantApp.controllers;
 
 import com.example.restaurantApp.domain.CommentDish;
+import com.example.restaurantApp.dto.CommentDishDto;
 import com.example.restaurantApp.services.CommentDishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class CommentDishController {
     }
 
     @PostMapping
-    public void addCommentDish(@RequestBody CommentDish commentDish,
+    public void addCommentDish(@RequestBody CommentDishDto commentDish,
                                @RequestParam("idDish") int idDish,
                                @RequestParam("idUser") int idUser){
         commentDishService.addCommentDish(commentDish, idUser, idDish);

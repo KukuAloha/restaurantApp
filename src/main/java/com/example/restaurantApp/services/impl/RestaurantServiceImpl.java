@@ -3,6 +3,7 @@ package com.example.restaurantApp.services.impl;
 
 import com.example.restaurantApp.bucket.BucketName;
 import com.example.restaurantApp.domain.Restaurant;
+import com.example.restaurantApp.dto.RestaurantDto;
 import com.example.restaurantApp.filestore.FileStore;
 
 import com.example.restaurantApp.repository.RestaurantRepository;
@@ -30,7 +31,15 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public int addRestaurant(Restaurant restaurant) {
+    public int addRestaurant(RestaurantDto restaurantDto) {
+
+        Restaurant restaurant = new Restaurant();
+        restaurant.setName(restaurantDto.getName());
+        restaurant.setAddress(restaurantDto.getAddress());
+        restaurant.setAvgCheck(restaurantDto.getAvgCheck());
+        restaurant.setStars(0);
+        restaurant.setDescription(restaurantDto.getDescription());
+
         return restaurantRepository.save(restaurant).getId();
     }
 

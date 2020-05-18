@@ -4,6 +4,7 @@ import com.example.restaurantApp.bucket.BucketName;
 import com.example.restaurantApp.domain.Dish;
 import com.example.restaurantApp.domain.Ingredient;
 import com.example.restaurantApp.domain.Restaurant;
+import com.example.restaurantApp.dto.IngredientDto;
 import com.example.restaurantApp.filestore.FileStore;
 import com.example.restaurantApp.repository.DishRepository;
 import com.example.restaurantApp.repository.IngredientRepository;
@@ -40,7 +41,11 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public void addIngredient(Ingredient ingredient) {
+    public void addIngredient(IngredientDto ingredientDto) {
+        Ingredient ingredient = new Ingredient();
+
+        ingredient.setName(ingredientDto.getName());
+        ingredient.setWeight(ingredientDto.getWeight());
         ingredientRepository.save(ingredient);
     }
 

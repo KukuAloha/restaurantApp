@@ -2,6 +2,7 @@ package com.example.restaurantApp.controllers;
 
 
 import com.example.restaurantApp.domain.Cuisine;
+import com.example.restaurantApp.dto.CuisineDto;
 import com.example.restaurantApp.services.CuisineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class CuisineController {
     }
 
     @PostMapping
-    public int addCuisine(@RequestBody Cuisine cuisine){
+    public int addCuisine(@RequestBody CuisineDto cuisine){
         return cuisineService.addCuisine(cuisine);
     }
 

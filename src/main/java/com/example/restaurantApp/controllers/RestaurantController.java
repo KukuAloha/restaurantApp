@@ -1,6 +1,7 @@
 package com.example.restaurantApp.controllers;
 
 import com.example.restaurantApp.domain.Restaurant;
+import com.example.restaurantApp.dto.RestaurantDto;
 import com.example.restaurantApp.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,7 +24,7 @@ public class RestaurantController {
     }
 
     @PostMapping
-    public int addRestaurant(@RequestBody Restaurant restaurant){
+    public int addRestaurant(@RequestBody RestaurantDto restaurant){
         return  restaurantService.addRestaurant(restaurant);
     }
 

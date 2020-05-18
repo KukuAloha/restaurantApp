@@ -1,6 +1,7 @@
 package com.example.restaurantApp.controllers;
 
 import com.example.restaurantApp.domain.CommentRestaurant;
+import com.example.restaurantApp.dto.CommentRestaurantDto;
 import com.example.restaurantApp.services.CommentRestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -22,7 +23,7 @@ public class CommentRestaurantController {
     }
 
     @PostMapping
-    public void addCommentRestaurant(@RequestBody CommentRestaurant commentRestaurant,
+    public void addCommentRestaurant(@RequestBody CommentRestaurantDto commentRestaurant,
                                      @Param("idRestaurant") int idRestaurant,
                                      @Param("idUser") int idUser){
         commentRestaurantService.addCommentRestaurant(commentRestaurant, idUser, idRestaurant);

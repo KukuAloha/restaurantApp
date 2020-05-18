@@ -1,6 +1,7 @@
 package com.example.restaurantApp.services.impl;
 
 import com.example.restaurantApp.domain.CommentDish;
+import com.example.restaurantApp.dto.CommentDishDto;
 import com.example.restaurantApp.repository.CommentDishRepository;
 import com.example.restaurantApp.repository.DishRepository;
 import com.example.restaurantApp.repository.UserRepository;
@@ -26,7 +27,11 @@ public class CommentDishServiceImpl implements CommentDishService {
     }
 
     @Override
-    public void addCommentDish(CommentDish commentDish, int idUser, int idDish) {
+    public void addCommentDish(CommentDishDto commentDishDto, int idUser, int idDish) {
+        CommentDish commentDish = new CommentDish();
+
+        commentDish.setComment(commentDishDto.getComment());
+
         commentDish.setUser(userRepository.findById(idUser).get());
         commentDish.setDish(dishRepository.findById(idDish).get());
         commentDishRepository.save(commentDish);

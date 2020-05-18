@@ -4,6 +4,7 @@ import com.example.restaurantApp.bucket.BucketName;
 import com.example.restaurantApp.domain.Menu;
 
 import com.example.restaurantApp.domain.Restaurant;
+import com.example.restaurantApp.dto.MenuDto;
 import com.example.restaurantApp.filestore.FileStore;
 import com.example.restaurantApp.repository.MenuRepository;
 import com.example.restaurantApp.repository.RestaurantRepository;
@@ -36,9 +37,12 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    @Transactional
-    public void addMenu(Menu menu, int id) {
+    public void addMenu(MenuDto menuDto, int id) {
+        Menu menu = new Menu();
+
+        menu.setDescription(menuDto.getDescription());
         menu.setRestaurant(restaurantRepository.getRestaurantById(id));
+
         menuRepository.save(menu);
     }
 

@@ -1,6 +1,7 @@
 package com.example.restaurantApp.controllers;
 
 import com.example.restaurantApp.domain.Dish;
+import com.example.restaurantApp.dto.DishDto;
 import com.example.restaurantApp.services.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -23,7 +24,7 @@ public class DishController {
     }
 
     @PostMapping
-    public void addDish(@RequestBody Dish dish,
+    public void addDish(@RequestBody DishDto dish,
                        @Param("id") int id){
         dishService.addDish(dish, id);
     }

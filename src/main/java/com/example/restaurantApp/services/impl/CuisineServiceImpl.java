@@ -1,6 +1,7 @@
 package com.example.restaurantApp.services.impl;
 
 import com.example.restaurantApp.domain.Cuisine;
+import com.example.restaurantApp.dto.CuisineDto;
 import com.example.restaurantApp.repository.CuisineRepository;
 import com.example.restaurantApp.services.CuisineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,11 @@ public class CuisineServiceImpl implements CuisineService {
     }
 
     @Override
-    public int addCuisine(Cuisine cuisine) {
+    public int addCuisine(CuisineDto cuisineDto) {
+        Cuisine cuisine = new Cuisine();
+
+        cuisine.setName(cuisineDto.getName());
+
         return cuisineRepository.save(cuisine).getId();
     }
 
