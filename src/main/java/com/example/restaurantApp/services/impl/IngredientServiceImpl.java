@@ -34,6 +34,12 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
+    public List<Ingredient> getIngredientsByDishId(int id) {
+        Dish dish = dishRepository.findDishById(id);
+        return ingredientRepository.findIngredientsByDishes(dish);
+    }
+
+    @Override
     public void addIngredient(Ingredient ingredient) {
         ingredientRepository.save(ingredient);
     }
@@ -47,6 +53,7 @@ public class IngredientServiceImpl implements IngredientService {
         ingredientRepository.save(ingredient);
         dishRepository.save(dish);
     }
+
 
     @Override
     public void uploadIngredientImage(int ingredientId, MultipartFile file) {

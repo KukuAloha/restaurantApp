@@ -8,7 +8,11 @@ import java.util.List;
 
 public interface IngredientService {
     List<Ingredient> getAllIngredient();
+
+    List<Ingredient> getIngredientsByDishId(int id);
+
     void addIngredient(Ingredient ingredient);
+
     int deleteIngredient(int id);
 
     void addIngredientToDish(int idOfIngredient, int idOfDish);

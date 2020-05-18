@@ -2,6 +2,7 @@ package com.example.restaurantApp.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -34,13 +35,15 @@ public class Restaurant {
     @Column(name = "avgCheck")
     private int avgCheck;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "restaurant")
+    @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "restaurant")
     private Set<CommentRestaurant> commentRestaurants;
 
     @JsonBackReference
     @OneToOne(mappedBy = "restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Menu menu;
 
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "restaurants")
     private Set<Cuisine> cuisines;
 
@@ -61,4 +64,5 @@ public class Restaurant {
     public int hashCode() {
         return Objects.hash(id, name, address, description, url, menu);
     }
+
 }

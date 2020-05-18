@@ -23,6 +23,11 @@ public class IngredientController {
         return ingredientService.getAllIngredient();
     }
 
+    @GetMapping("getAllByDish")
+    public List<Ingredient> getIngredientsByDishId(@Param("id") int id) {
+       return ingredientService.getIngredientsByDishId(id);
+    }
+
     @PostMapping
     public void addNewIngredient(@RequestBody Ingredient ingredient){
         ingredientService.addIngredient(ingredient);

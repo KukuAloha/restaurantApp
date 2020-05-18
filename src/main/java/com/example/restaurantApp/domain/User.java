@@ -1,6 +1,7 @@
 package com.example.restaurantApp.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -38,9 +39,10 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private Set<CommentDish> commentDishes;
-
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private Set<CommentRestaurant> commentRestaurants;
 
