@@ -26,7 +26,7 @@ public class Ingredient {
     private double weight;
 
     @JsonBackReference
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "ingredients")
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "ingredients")
     private Set<Dish> dishes;
 
     @Override

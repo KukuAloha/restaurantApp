@@ -3,6 +3,7 @@ package com.example.restaurantApp.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -39,7 +40,7 @@ public class Restaurant {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "restaurant")
     private Set<CommentRestaurant> commentRestaurants;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne(mappedBy = "restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Menu menu;
 

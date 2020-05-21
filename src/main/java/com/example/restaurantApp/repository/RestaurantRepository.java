@@ -1,5 +1,6 @@
 package com.example.restaurantApp.repository;
 
+import com.example.restaurantApp.domain.Cuisine;
 import com.example.restaurantApp.domain.Restaurant;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -8,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Repository
@@ -25,4 +27,7 @@ public interface RestaurantRepository extends CrudRepository<Restaurant,Integer>
     @Transactional
     @Query("select r from Restaurant r where r.id = :id")
     Restaurant getRestaurantById(@Param("id") int id);
+
+    @Transactional
+    List<Restaurant> findRestaurantsByCuisines(Cuisine cuisine);
 }

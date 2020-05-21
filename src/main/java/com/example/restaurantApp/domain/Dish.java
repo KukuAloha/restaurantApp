@@ -1,6 +1,7 @@
 package com.example.restaurantApp.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -32,7 +33,7 @@ public class Dish {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "dish")
     private Set<CommentDish> commentDishes;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "menu_id")
     private Menu menu;

@@ -2,6 +2,7 @@ package com.example.restaurantApp.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Data
 @Entity
+@Table(name = "cuisine")
 public class Cuisine {
 
     @Id
@@ -19,7 +21,7 @@ public class Cuisine {
     @Column(name = "cuisineName")
     private String name;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "cuisine_restaurant",
                 joinColumns = @JoinColumn(name = "cuisine_id"),

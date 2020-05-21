@@ -1,6 +1,7 @@
 package com.example.restaurantApp.services.impl;
 
 import com.example.restaurantApp.domain.CommentRestaurant;
+import com.example.restaurantApp.domain.Restaurant;
 import com.example.restaurantApp.dto.CommentRestaurantDto;
 import com.example.restaurantApp.repository.CommentRestaurantRepository;
 import com.example.restaurantApp.repository.RestaurantRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class CommentRestaurantServiceImpl implements CommentRestaurantService {
@@ -36,6 +38,14 @@ public class CommentRestaurantServiceImpl implements CommentRestaurantService {
         commentRestaurant.setUser(userRepository.findById(idUser).get());
         commentRestaurant.setRestaurant(restaurantRepository.findById(idRestaurant).get());
         commentRestaurantRepository.save(commentRestaurant);
+
+        Restaurant restaurant = restaurantRepository.getRestaurantById(idRestaurant);
+        int stars = Integer.parseInt(String.valueOf(commentRestaurantRepository.findCommentRestaurantByRestaurantId(idRestaurant)
+                .stream()
+                .mapToInt(CommentRestaurant::getStars)
+                .average()));
+        restaurant.setStars(stars);
+        restaurantRepository.save(restaurant);
     }
 
     @Override

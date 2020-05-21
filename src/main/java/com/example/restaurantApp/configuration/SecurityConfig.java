@@ -18,7 +18,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String MODERATOR_ENDPOINT = "/admin/**";
     private static final String LOGIN_ENDPOINT = "/auth/login";
     private static final String REGISTRATION_ENDPOINT = "/users/register";
-    private static final String TEST = "/**";
+    private static final String COMMENT_DISH = "/commentRestaurant";
+    private static final String COMMENT_RESTAURANT = "/commentDish";
+    private static final String ALL = "/**";
 
     @Autowired
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
@@ -40,7 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                     .authorizeRequests()
-                    .antMatchers(TEST).permitAll()
+                    .antMatchers(ALL).permitAll()
+                    .antMatchers(COMMENT_DISH).hasRole("USER")
+                    .antMatchers(COMMENT_RESTAURANT).hasRole("USER")
                     .antMatchers(LOGIN_ENDPOINT).permitAll()
                     .antMatchers(REGISTRATION_ENDPOINT).permitAll()
                     .antMatchers(MODERATOR_ENDPOINT).hasRole("MODERATOR")
