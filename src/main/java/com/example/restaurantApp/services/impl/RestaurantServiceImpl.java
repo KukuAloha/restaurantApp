@@ -37,7 +37,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurant.setName(restaurantDto.getName());
         restaurant.setAddress(restaurantDto.getAddress());
         restaurant.setAvgCheck(restaurantDto.getAvgCheck());
-        restaurant.setStars(0);
+        restaurant.setStars(restaurantDto.getStars());
         restaurant.setDescription(restaurantDto.getDescription());
 
         return restaurantRepository.save(restaurant).getId();

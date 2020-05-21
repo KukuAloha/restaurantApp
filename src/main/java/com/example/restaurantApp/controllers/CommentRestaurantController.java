@@ -24,8 +24,8 @@ public class CommentRestaurantController {
 
     @PostMapping
     public void addCommentRestaurant(@RequestBody CommentRestaurantDto commentRestaurant,
-                                     @Param("idRestaurant") int idRestaurant,
-                                     @Param("idUser") int idUser){
+                                     @RequestParam("idRestaurant") int idRestaurant,
+                                     @RequestParam("idUser") int idUser){
         commentRestaurantService.addCommentRestaurant(commentRestaurant, idUser, idRestaurant);
     }
 

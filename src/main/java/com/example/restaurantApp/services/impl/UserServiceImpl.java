@@ -58,7 +58,6 @@ public class UserServiceImpl implements UserService {
 
         User registeredUser = userRepository.save(user);
 
-        log.info("IN register - user: {} successfully registered", registeredUser);
 
         return registeredUser;
     }
@@ -68,7 +67,6 @@ public class UserServiceImpl implements UserService {
 
         User user =  userRepository.findUserByLogin(username);
 
-        log.info("IN findByUserName - user: {} found by username: {}", user, username);
 
         return user;
     }
@@ -79,11 +77,9 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id).orElse(null);
 
         if(user == null) {
-            log.warn("IN findById - no user found by id: {}", id);
             return null;
         }
 
-        log.info("IN findByID - user: {} found by username: {} ", user, id);
 
         return user;
     }
