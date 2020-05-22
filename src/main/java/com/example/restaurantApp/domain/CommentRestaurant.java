@@ -1,13 +1,16 @@
 package com.example.restaurantApp.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "commentRestaurant")
 public class CommentRestaurant {
@@ -22,16 +25,16 @@ public class CommentRestaurant {
     private int stars;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -46,5 +49,5 @@ public class CommentRestaurant {
     @Override
     public int hashCode() {
         return Objects.hash(id, comment, stars, restaurant, user);
-    }
+    }*/
 }

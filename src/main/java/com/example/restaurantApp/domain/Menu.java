@@ -3,14 +3,19 @@ package com.example.restaurantApp.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name="menu")
 public class Menu {
@@ -26,7 +31,7 @@ public class Menu {
     private String url;
 
     @JsonBackReference
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "menu")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "menu")
     private Set<Dish> dishes;
 
     @JsonIgnore
@@ -34,7 +39,7 @@ public class Menu {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @Override
+   /* @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -49,5 +54,5 @@ public class Menu {
     @Override
     public int hashCode() {
         return Objects.hash(id, description, dishes, url, restaurant);
-    }
+    }*/
 }

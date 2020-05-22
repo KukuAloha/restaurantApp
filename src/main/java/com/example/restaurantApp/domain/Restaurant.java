@@ -3,14 +3,19 @@ package com.example.restaurantApp.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-@Data
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name="restaurant")
 public class Restaurant {
@@ -48,7 +53,7 @@ public class Restaurant {
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "restaurants")
     private Set<Cuisine> cuisines;
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -63,7 +68,7 @@ public class Restaurant {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, address, description, url, menu);
-    }
+        return Objects.hash(id, name, address, description, url, menu);*/
+    //}
 
 }

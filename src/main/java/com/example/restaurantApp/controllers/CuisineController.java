@@ -28,7 +28,7 @@ public class CuisineController {
         return cuisineService.addCuisine(cuisine);
     }
 
-    @PostMapping("addCuisineToRestaurant")
+    @PostMapping("/addCuisineToRestaurant")
     public void addCuisineToRestaurant(@RequestParam("idOfRestaurant") int idOfRestaurant,
                                        @RequestParam("idOfCuisine") int idCuisine) {
         cuisineService.addCuisineToRestaurant(idOfRestaurant, idCuisine);
@@ -37,12 +37,12 @@ public class CuisineController {
     @DeleteMapping
     public int deleteCuisine(@RequestParam int id){ return cuisineService.deleteCuisine(id); }
 
-    @GetMapping("getCuisinesByRestaurant")
+    @GetMapping("/getCuisinesByRestaurant")
     public List<Cuisine> getCuisinesByRestaurantId(@RequestParam("id") int id) {
         return cuisineService.getCuisinesForRestaurant(id);
     }
 
-    @GetMapping("getRestaurantsByCuisine")
+    @GetMapping("/getRestaurantsByCuisine")
     public List<Restaurant> getRestaurantsByCuisine(@RequestParam("id") int id) {
         return cuisineService.getRestaurantsByCuisine(id);
     }
