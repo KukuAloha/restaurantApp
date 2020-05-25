@@ -1,10 +1,7 @@
 package com.example.restaurantApp.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,7 +31,10 @@ public class Menu {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "menu")
     private Set<Dish> dishes;
 
-    @JsonIgnore
+    @JsonBackReference
+    //@JsonIdentityInfo(
+    //  generator = ObjectIdGenerators.PropertyGenerator.class,
+    //  property = "id") 2 вариант вывода данных
     @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
