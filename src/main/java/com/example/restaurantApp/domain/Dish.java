@@ -34,7 +34,7 @@ public class Dish {
     private Set<CommentDish> commentDishes;
 
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "menu_id")
     private Menu menu;
 

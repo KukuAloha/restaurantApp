@@ -2,12 +2,16 @@ package com.example.restaurantApp.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
 
-@Data
+//@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name="commentDish")
 public class CommentDish {
@@ -28,7 +32,7 @@ public class CommentDish {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -42,5 +46,5 @@ public class CommentDish {
     @Override
     public int hashCode() {
         return Objects.hash(id, comment, dish, user);
-    }
+    }*/
 }

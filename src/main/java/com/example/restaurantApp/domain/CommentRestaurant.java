@@ -11,6 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+//@Data
 @Entity
 @Table(name = "commentRestaurant")
 public class CommentRestaurant {

@@ -40,11 +40,11 @@ public class CommentRestaurantServiceImpl implements CommentRestaurantService {
         commentRestaurantRepository.save(commentRestaurant);
 
         Restaurant restaurant = restaurantRepository.getRestaurantById(idRestaurant);
-        int stars = Integer.parseInt(String.valueOf(commentRestaurantRepository.findCommentRestaurantByRestaurantId(idRestaurant)
+        /*int stars = Integer.parseInt(String.valueOf(commentRestaurantRepository.findCommentRestaurantByRestaurantId(idRestaurant)
                 .stream()
                 .mapToInt(CommentRestaurant::getStars)
                 .average()));
-        restaurant.setStars(stars);
+        restaurant.setStars(stars);*/
         restaurantRepository.save(restaurant);
     }
 
