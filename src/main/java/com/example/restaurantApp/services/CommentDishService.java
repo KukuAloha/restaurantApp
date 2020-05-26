@@ -13,4 +13,6 @@ public interface CommentDishService {
     void addCommentDish(CommentDishDto commentDishDto, int idUser, int idDish);
 
     void deleteCommentDish(int id);
+
+    List<CommentDish> getAllCommentByDishId(int id);
 }

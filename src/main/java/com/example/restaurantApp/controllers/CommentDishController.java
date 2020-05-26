@@ -16,11 +16,11 @@ public class CommentDishController {
     private CommentDishService commentDishService;
 
     @GetMapping
-    public List<CommentDish> getAllCommentsDish(){
-        return commentDishService.getAllCommentDish();
+    public List<CommentDish> getAllCommentsByDishId(@RequestParam("id") int id){
+        return commentDishService.getAllCommentByDishId(id);
     }
 
-    @PostMapping
+    @PostMapping("/addCommentDish")
     public void addCommentDish(@RequestBody CommentDishDto commentDish,
                                @RequestParam("idDish") int idDish,
                                @RequestParam("idUser") int idUser){

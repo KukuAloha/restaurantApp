@@ -18,8 +18,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String MODERATOR_ENDPOINT = "/admin/**";
     private static final String LOGIN_ENDPOINT = "/auth/login";
     private static final String REGISTRATION_ENDPOINT = "/users/register";
-    private static final String COMMENT_DISH = "/commentRestaurant";
-    private static final String COMMENT_RESTAURANT = "/commentDish";
+    private static final String COMMENT_DISH = "/addCommentDish";
+    private static final String COMMENT_RESTAURANT = "/addCommentRestaurant";
     private static final String ALL = "/**";
 
     @Autowired

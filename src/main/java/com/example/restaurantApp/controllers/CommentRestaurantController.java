@@ -18,11 +18,11 @@ public class CommentRestaurantController {
     private CommentRestaurantService commentRestaurantService;
 
     @GetMapping
-    public List<CommentRestaurant> getAllCommentsRestaurant(){
-        return  commentRestaurantService.getAllCommentRestaurant();
+    public List<CommentRestaurant> getAllCommentsRestaurantByRestaurantId(@RequestParam("id") int id){
+        return  commentRestaurantService.getAllCommentByRestaurantId(id);
     }
 
-    @PostMapping
+    @PostMapping("/addCommentRestaurant")
     public void addCommentRestaurant(@RequestBody CommentRestaurantDto commentRestaurant,
                                      @RequestParam("idRestaurant") int idRestaurant,
                                      @RequestParam("idUser") int idUser){

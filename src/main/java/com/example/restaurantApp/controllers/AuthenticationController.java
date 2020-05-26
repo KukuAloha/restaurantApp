@@ -53,12 +53,12 @@ public class AuthenticationController {
 
             response.put("username", username);
             response.put("token", token);
-            response.put("role", user.getRoles());
+         //   response.put("role", user.getRoles());
 
             return ResponseEntity.ok(response);
 
         } catch (AuthenticationException e) {
-            return ResponseEntity.ok("Некорректный пароль или логин");
+            return (ResponseEntity) ResponseEntity.status(401);
         }
     }
 }

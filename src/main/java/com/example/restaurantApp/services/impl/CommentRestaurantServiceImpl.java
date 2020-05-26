@@ -39,13 +39,29 @@ public class CommentRestaurantServiceImpl implements CommentRestaurantService {
         commentRestaurant.setRestaurant(restaurantRepository.findById(idRestaurant).get());
         commentRestaurantRepository.save(commentRestaurant);
 
-        Restaurant restaurant = restaurantRepository.getRestaurantById(idRestaurant);
-        /*int stars = Integer.parseInt(String.valueOf(commentRestaurantRepository.findCommentRestaurantByRestaurantId(idRestaurant)
-                .stream()
-                .mapToInt(CommentRestaurant::getStars)
-                .average()));
-        restaurant.setStars(stars);*/
-        restaurantRepository.save(restaurant);
+        List<CommentRestaurant> comments = commentRestaurantRepository
+                .findCommentRestaurantByRestaurantId(idRestaurant);
+
+        if(!comments.isEmpty()) {
+            int stars = 0;
+
+            for (CommentRestaurant c: comments) {
+                stars = stars + c.getStars();
+            }
+
+            Restaurant restaurant = restaurantRepository.getRestaurantById(idRestaurant);
+
+            stars = (int) stars/comments.size();
+
+            restaurant.setStars(stars);
+
+            restaurantRepository.save(restaurant);
+        }
+    }
+
+    @Override
+    public List<CommentRestaurant> getAllCommentByRestaurantId(int id) {
+        return commentRestaurantRepository.findCommentRestaurantByRestaurantId(id);
     }
 
     @Override

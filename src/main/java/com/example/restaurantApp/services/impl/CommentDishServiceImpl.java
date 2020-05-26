@@ -41,4 +41,9 @@ public class CommentDishServiceImpl implements CommentDishService {
     public void deleteCommentDish(int id) {
         commentDishRepository.deleteById(id);
     }
+
+    @Override
+    public List<CommentDish> getAllCommentByDishId(int id) {
+        return commentDishRepository.findCommentDishByDishId(id);
+    }
 }

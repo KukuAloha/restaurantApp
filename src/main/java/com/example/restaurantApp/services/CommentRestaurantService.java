@@ -13,4 +13,5 @@ public interface CommentRestaurantService {
     void deleteCommentRestaurant(int id);
 
 
+    List<CommentRestaurant> getAllCommentByRestaurantId(int id);
 }
