@@ -5,6 +5,8 @@ import com.example.restaurantApp.domain.Cuisine;
 import com.example.restaurantApp.domain.Restaurant;
 import com.example.restaurantApp.dto.CuisineDto;
 import com.example.restaurantApp.services.CuisineService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;

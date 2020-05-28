@@ -42,12 +42,12 @@ public class Restaurant {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "restaurant")
     private Set<CommentRestaurant> commentRestaurants;
 
-    @JsonManagedReference
+    @JsonBackReference
     //@JsonIdentityInfo(
     //  generator = ObjectIdGenerators.PropertyGenerator.class,
     //  property = "id") 2 вариант вывода данных
-    @OneToOne(mappedBy = "restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Menu menu;
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Menu> menu;
 
     @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "restaurants")

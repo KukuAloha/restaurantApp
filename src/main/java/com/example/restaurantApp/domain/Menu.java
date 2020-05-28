@@ -31,11 +31,12 @@ public class Menu {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "menu")
     private Set<Dish> dishes;
 
-    @JsonBackReference
+
     //@JsonIdentityInfo(
     //  generator = ObjectIdGenerators.PropertyGenerator.class,
     //  property = "id") 2 вариант вывода данных
-    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 

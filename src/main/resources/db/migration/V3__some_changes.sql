@@ -1,0 +1,12 @@
+alter table comment_restaurant add column stars integer;
+alter table dish add column url varchar(255);
+alter table ingredient add column url varchar(255);
+alter table menu add column url varchar(255);
+alter table restaurant add column avg_check integer;
+alter table restaurant add column stars integer;
+alter table restaurant add column url varchar(255);
+create table roles (id integer not null auto_increment, name varchar(255), primary key (id)) engine=InnoDB;
+alter table user add column email varchar(255);
+create table user_roles (user_id integer not null, role_id integer not null) engine=InnoDB;
+alter table user_roles add constraint FKh8ciramu9cc9q3qcqiv4ue8a6 foreign key (role_id) references roles (id);
+alter table user_roles add constraint FK55itppkw3i07do3h7qoclqd4k foreign key (user_id) references user (id);
