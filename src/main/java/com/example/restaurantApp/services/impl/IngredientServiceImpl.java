@@ -75,7 +75,7 @@ public class IngredientServiceImpl implements IngredientService {
 
         try {
             fileStore.save(path, filename, Optional.of(metadata), file.getInputStream());
-            String link = "https://kray-bucket.s3.eu-central-1.amazonaws.com/Ingredients/" + ingredientId + "/" + filename;
+            String link = "https://kray-bucket.s3.us-east-2.amazonaws.com/Ingredients/" + ingredientId + "/" + filename;
             ingredientRepository.updateIngredientLinkById(ingredientId, link);
         } catch (IOException e) {
             throw new IllegalStateException(e);

@@ -64,7 +64,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         try {
             fileStore.save(path, filename, Optional.of(metadata), file.getInputStream());
-            String link = "https://kray-bucket.s3.eu-central-1.amazonaws.com/Restaurants/" + restaurantId + "/" + filename;
+            String link = "https://kray-bucket.s3.us-east-2.amazonaws.com/Restaurants/" + restaurantId + "/" + filename;
             restaurantRepository.updateRestaurantLinkById(restaurantId, link); //setUserProfileImageLink(filename);
         } catch (IOException e) {
             throw new IllegalStateException(e);

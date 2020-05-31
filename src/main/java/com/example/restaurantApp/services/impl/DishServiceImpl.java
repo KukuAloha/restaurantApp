@@ -64,7 +64,7 @@ public class DishServiceImpl implements DishService {
 
         try {
             fileStore.save(path, filename, Optional.of(metadata), file.getInputStream());
-            String link = "https://kray-bucket.s3.eu-central-1.amazonaws.com/Dishes/" + dishId + "/" + filename;
+            String link = "https://kray-bucket.s3.us-east-2.amazonaws.com/Dishes/" + dishId + "/" + filename;
             dishRepository.updateDishLinkById(dishId, link);
         } catch (IOException e) {
             throw new IllegalStateException(e);
