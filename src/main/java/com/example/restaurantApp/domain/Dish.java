@@ -29,6 +29,9 @@ public class Dish {
     @Column(name = "url")
     private String url;
 
+    @Column(name = "type")
+    private String type;
+
     @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "dish")
     private Set<CommentDish> commentDishes;
