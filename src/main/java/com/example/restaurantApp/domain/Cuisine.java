@@ -21,7 +21,7 @@ public class Cuisine {
     @Column(name = "cuisineName")
     private String name;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "cuisine_restaurant",
                 joinColumns = @JoinColumn(name = "cuisine_id"),

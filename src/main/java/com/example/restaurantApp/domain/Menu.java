@@ -27,15 +27,15 @@ public class Menu {
     @Column(name = "url")
     private String url;
 
-    @JsonBackReference
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "menu")
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "menu")
     private Set<Dish> dishes;
 
 
     //@JsonIdentityInfo(
     //  generator = ObjectIdGenerators.PropertyGenerator.class,
     //  property = "id") 2 вариант вывода данных
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;

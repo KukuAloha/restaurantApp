@@ -32,16 +32,16 @@ public class Dish {
     @Column(name = "type")
     private String type;
 
-    @JsonBackReference
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "dish")
     private Set<CommentDish> commentDishes;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "dish_ingredient",
                 joinColumns = @JoinColumn(name = "dish_id"/*,referencedColumnName="id"*/),

@@ -38,18 +38,19 @@ public class Restaurant {
     @Column(name = "avgCheck")
     private int avgCheck;
 
-    @JsonBackReference
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "restaurant")
     private Set<CommentRestaurant> commentRestaurants;
 
-    @JsonBackReference
+
     //@JsonIdentityInfo(
     //  generator = ObjectIdGenerators.PropertyGenerator.class,
     //  property = "id") 2 вариант вывода данных
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Menu> menu;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "restaurants")
     private Set<Cuisine> cuisines;
 
