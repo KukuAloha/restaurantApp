@@ -32,6 +32,18 @@ public class Restaurant {
     @Column(name = "url")
     private String url;
 
+    @Column(name = "type")
+    private  String type;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "longitude")
+    private String longitude;
+
+    @Column(name = "latitude")
+    private String latitude;
+
     @Column(name = "stars")
     private int stars;
 
