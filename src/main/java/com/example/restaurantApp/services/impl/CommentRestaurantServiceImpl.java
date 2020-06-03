@@ -34,6 +34,7 @@ public class CommentRestaurantServiceImpl implements CommentRestaurantService {
 
         commentRestaurant.setComment(commentRestaurantDto.getComment());
         commentRestaurant.setStars(commentRestaurantDto.getStars());
+        commentRestaurant.setName(userRepository.findById(idUser).get().getLogin());
 
         commentRestaurant.setUser(userRepository.findById(idUser).get());
         commentRestaurant.setRestaurant(restaurantRepository.findById(idRestaurant).get());

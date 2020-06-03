@@ -25,6 +25,9 @@ public class CommentRestaurant {
     @Column(name = "stars")
     private int stars;
 
+    @Column(name = "user_name")
+    private String name;
+
     @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
